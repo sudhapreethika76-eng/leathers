@@ -1,0 +1,348 @@
+/* Cart animations and transitions */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0.25;
+  }
+}
+
+@keyframes cartBadgeBounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+}
+
+@keyframes cartBadgeGlow {
+  0%, 100% {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2), 0 0 0 0 rgba(215, 168, 110, 0.7);
+  }
+  50% {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2), 0 0 0 8px rgba(215, 168, 110, 0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.animate-pulse {
+  animation: pulse 1s infinite;
+}
+
+.animate-cart-badge-bounce {
+  animation: cartBadgeBounce 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.animate-cart-badge-glow {
+  animation: cartBadgeGlow 0.6s ease-out;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.3s ease-out;
+}
+
+.animate-shake {
+  animation: shake 0.3s ease-out;
+}
+
+/* Enhanced button styles */
+.btn-add-to-cart {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.btn-add-to-cart:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(62, 39, 35, 0.3);
+}
+
+.btn-add-to-cart:active {
+  transform: translateY(0);
+}
+
+.btn-add-to-cart.added {
+  background: linear-gradient(45deg, #28a745, #20c997);
+  border-color: #28a745;
+}
+
+.btn-add-to-cart.added::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.btn-add-to-cart.added::after {
+  width: 300px;
+  height: 300px;
+}
+
+/* Enhanced Cart Badge Styles */
+.cart-badge {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cart-badge::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.5s;
+}
+
+.cart-badge:hover::before {
+  left: 100%;
+}
+
+.cart-badge:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3), 0 0 0 0 rgba(215, 168, 110, 0.4);
+}
+
+.cart-badge.updated {
+  animation: cartBadgeBounce 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55), 
+             cartBadgeGlow 0.6s ease-out;
+}
+
+/* Cart badge count variations */
+.cart-badge.count-single {
+  min-width: 24px;
+  height: 24px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.cart-badge.count-double {
+  min-width: 28px;
+  height: 28px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.cart-badge.count-triple {
+  min-width: 32px;
+  height: 32px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.cart-badge.count-many {
+  min-width: 36px;
+  height: 36px;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+/* Responsive cart badge */
+@media (max-width: 768px) {
+  .cart-badge {
+    min-width: 20px !important;
+    height: 20px !important;
+    font-size: 0.7rem !important;
+    padding: 0 4px !important;
+    border-width: 1.5px !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .cart-badge {
+    min-width: 18px !important;
+    height: 18px !important;
+    font-size: 0.65rem !important;
+    padding: 0 3px !important;
+    top: -2px !important;
+    right: -2px !important;
+  }
+}
+
+/* Product card hover effects */
+.product-card {
+  transition: all 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.product-card:hover .card-img-top {
+  transform: scale(1.05);
+}
+
+.card-img-top {
+  transition: transform 0.3s ease;
+}
+
+/* Loading spinner for cart operations */
+.cart-loading {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Success notification */
+.cart-success-toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #28a745;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  animation: slideInRight 0.3s ease-out;
+}
+
+.cart-success-toast.hiding {
+  animation: slideInRight 0.3s ease-out reverse;
+}
+
+/* Mobile responsive fixes for animations */
+@media (max-width: 768px) {
+  .product-card:hover {
+    transform: translateY(-3px);
+  }
+  
+  .btn-add-to-cart:hover {
+    transform: translateY(-1px);
+  }
+  
+  .cart-success-toast {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+    padding: 10px 15px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-card:hover {
+    transform: translateY(-2px);
+  }
+  
+  .btn-add-to-cart {
+    font-size: 0.85rem;
+    padding: 8px 15px;
+  }
+  
+  .cart-success-toast {
+    font-size: 0.85rem;
+    padding: 8px 12px;
+  }
+}
+
+/* Prevent overflow issues */
+* {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Fix for Bootstrap components */
+.container-fluid {
+  padding-left: clamp(15px, 4vw, 30px);
+  padding-right: clamp(15px, 4vw, 30px);
+}
+
+.navbar {
+  padding: clamp(10px, 2vw, 15px) 0;
+}
+
+/* Responsive grid fixes */
+.row {
+  margin-left: -10px;
+  margin-right: -10px;
+}
+
+.col, .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12 {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+@media (max-width: 768px) {
+  .row {
+    margin-left: -5px;
+    margin-right: -5px;
+  }
+  
+  .col, .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12 {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}
